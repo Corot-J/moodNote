@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    导航栏
-    <i class="iconfont icon-add"></i>
+    {{toDay}}
+    <router-link class="iconfont icon-add" tag="i" to="newNote"></router-link>
   </div>
 </template>
 
@@ -11,6 +11,15 @@ export default {
   data () {
     return {
       
+    }
+  },
+  computed:{
+    toDay:function(){
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var day = date.getDate();
+      return year+'/'+month+'/'+day;
     }
   }
 }
