@@ -25,18 +25,18 @@ export default {
 .note-list{
     width: 100%;
     height: calc(100% - 70px);
-    padding: 10px 0;
     overflow-y: auto;
 }
 .note-item{
-    width: calc(100% - 40px);
-    height: 200px;
+    width: 100%;
+    height: 400px;
     margin: 0 auto 10px;
     position: relative;
     overflow: hidden;
 }
 .note-img{
     width: 100%;
+    height: 100%;
 }
 .note-footer{
     width: 100%;
