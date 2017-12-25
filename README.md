@@ -23,3 +23,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 this is moodNote app
 
 用于记录心情
+这是心情笔记
