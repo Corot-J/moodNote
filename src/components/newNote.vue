@@ -2,28 +2,39 @@
   <div class="new-note">
     <div class="new-note-header">
         <router-link to="/" tag="div" class="cancel-btn"><i class="iconfont icon-Clear"></i></router-link>
-        <div class="confirm-btn">保存</div>
+        <div class="confirm-btn" @click='addNote'>保存</div>
     </div>
     <div class="new-note-content">
         <div class="new-note-mood">
             <div class="new-note-title">心情：</div>
-            <textarea placeholder="心情..." v-model="mood"></textarea>
+            <textarea placeholder="心情..." v-model="note.mood"></textarea> 
         </div>
         <div class="new-note-time">
             <div class="new-note-title">日期：</div>
-            <input type="date" v-model="today">
+            <input type="date" v-model="note.date">
+        </div>
+        <div class="new-note-img">
+            <label class="choose-img" for="imgChoose" v-if="note.img==''">+</label>
+            <label class="img-show" for="imgChoose" v-else>
+                <img :src="note.img">
+            </label>
+            <input id="imgChoose" type="file" accept="image/*" style="display:none" @change='chooseImg($event)'>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'NewNote',
   data () {
     return {
-        mood: '',
-        today: ''
+        note:{
+            mood: '',
+            date: '',
+            img: ''
+        }
     }
   },
   mounted:function(){
@@ -35,11 +46,19 @@ export default {
       init:function(){
         var date = new Date();
         var year = date.getFullYear();
-        var month = date.getMonth();
-        month>9?month:'0'+month;
+        var month = date.getMonth()+1;
+        month = month>9?month:'0'+month;
         var day = date.getDate();
-        day=day>9?day:'0'+day;
-        this.today = year+'-'+month+'-'+day;
+        day = day>9?day:'0'+day;
+        this.note.date = year+'-'+month+'-'+day;
+      },
+      chooseImg:function(e){
+        var url = window.URL.createObjectURL(e.target.files[0]);
+        this.note.img = url;
+      },
+      addNote:function(){
+        this.$store.dispatch('addNote', this.note)
+        this.$router.back()
       }
   }
 }
@@ -104,5 +123,25 @@ export default {
     height: 40px;
     padding: 0 10px;
     border: 1px solid #d7d7d7
+}
+.new-note-img{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+.choose-img{
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 40px;
+    background-color: rgb(243, 243, 243)
+}
+.img-show{
+    display: inline-block;
+    width: 100%;
+}
+.img-show img{
+    width: 100%;
 }
 </style>

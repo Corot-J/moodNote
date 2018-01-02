@@ -24,7 +24,7 @@ export default {
 <style scoped>
 .note-list{
     width: 100%;
-    height: calc(100% - 70px);
+    height: calc(100% - 50px);
     overflow-y: auto;
 }
 .note-item{

@@ -1,3 +1,1 @@
-export const noteList = state =>{
-    return state.noteList
-} 
+export const noteList = state => state.noteList
