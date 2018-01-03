@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state:{
-        noteList:[]
+        noteList:[],
+        noteDetailId: ''
     },
     getters,
     actions,

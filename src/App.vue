@@ -10,7 +10,17 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted:function(){
+    this.$nextTick(function(){
+      this.init();
+    })
+  },
+  methods:{
+    init:function(){
+      this.$store.commit('GET_NOTE');
+    }
+  }
 }
 </script>
 
