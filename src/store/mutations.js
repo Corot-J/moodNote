@@ -4,9 +4,10 @@ const mutations = {
     [types.ADD_NOTE] (state,note) {
         state.noteList.push({
             id: state.noteList.length+1,
-            img: note.img,
-            date: note.date,
-            mood: note.mood
+            regret: note.regret,
+            happy: note.happy,
+            mood: note.mood,
+            date: note.date
         })
         localStorage.setItem('noteList',JSON.stringify(state.noteList));
     },

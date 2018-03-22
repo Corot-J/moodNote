@@ -1,7 +1,6 @@
 <template>
   <div class="note-list">
     <div class="note-item" v-for="note in noteList" v-bind:key="note.id" @click="toNoteDetail(note.id)">
-        <img  class="note-img" :src="note.img">
         <div class="note-footer">
             <div class="note-mood">{{note.mood}}</div>
             <div class="note-date">{{note.date}}</div>

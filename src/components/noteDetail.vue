@@ -5,9 +5,6 @@
         <div class="note-time">{{note.date}}</div>
     </div>
     <div class="note-detail-content">
-        <div class="note-img">
-            <img :src="note.img">
-        </div>
         <div class="note-title">{{note.mood}}</div>
     </div>
     

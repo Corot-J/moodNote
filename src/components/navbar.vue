@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     {{toDay}}
-    <router-link class="iconfont icon-add" tag="i" to="newNote"></router-link>
+    <router-link class="iconfont icon-icon-2 edit-btn" tag="i" to="newNote"></router-link>
   </div>
 </template>
 
@@ -37,10 +37,10 @@ export default {
   text-align: center;
   position: relative;
 }
-.navbar .icon-add{
-  font-size: 20px;
+.navbar .edit-btn{
+  font-size: 25px;
   position: absolute;
   right: 15px;
-  top: 0
+  top: 0;
 }
 </style>

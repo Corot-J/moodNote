@@ -1,24 +1,19 @@
 <template>
   <div class="new-note">
     <div class="new-note-header">
-        <router-link to="/" tag="div" class="cancel-btn"><i class="iconfont icon-Clear"></i></router-link>
-        <div class="confirm-btn" @click='addNote'>保存</div>
+        <router-link to="/" tag="div" class="cancel-btn"><i class="iconfont icon-back"></i></router-link>
+        <div class="new-note-date"><input type="date" v-model="note.date"></div>
+        <div class="confirm-btn" @click='addNote'><i class="iconfont icon-check"></i></div>
     </div>
     <div class="new-note-content">
         <div class="new-note-mood">
-            <div class="new-note-title">心情：</div>
-            <textarea placeholder="心情..." v-model="note.mood"></textarea> 
+            <textarea class="new-note-input" placeholder="今天的心情..." v-model="note.mood"></textarea> 
         </div>
-        <div class="new-note-time">
-            <div class="new-note-title">日期：</div>
-            <input type="date" v-model="note.date">
+        <div class="new-note-regret">
+            <textarea class="new-note-input" type="text" placeholder="今天的遗憾..." v-model="note.regret"></textarea>
         </div>
-        <div class="new-note-img">
-            <label class="choose-img" for="imgChoose" v-if="note.img==''">+</label>
-            <label class="img-show" for="imgChoose" v-else>
-                <img :src="note.img">
-            </label>
-            <input id="imgChoose" type="file" accept="image/*" style="display:none" @change='chooseImg($event)'>
+        <div class="new-note-happy">
+            <textarea class="new-note-input" type="text" placeholder="值得高兴的事情..."></textarea>
         </div>
     </div>
   </div>
@@ -32,8 +27,9 @@ export default {
     return {
         note:{
             mood: '',
-            date: '',
-            img: ''
+            regret: '',
+            happy: '',
+            date: ''
         }
     }
   },
@@ -69,6 +65,8 @@ export default {
 .new-note{
     width: 100%;
     height: 100%;
+    background-color: #fff;
+    font-size: 0;
 }
 .new-note-header{
     width: 100%;
@@ -79,69 +77,62 @@ export default {
 .cancel-btn,.confirm-btn{
     position: absolute;
     top: 0;
+    font-weight: bold;
 }
 .cancel-btn i{
     font-size: 14px;
     cursor: pointer;
 }
 .cancel-btn{
-    left: 15px;
+    left: 20px;
 }
 .confirm-btn{
     right: 15px;
-    font-size: 14px;
-    color: #15ae11
+}
+.confirm-btn i{
+    font-size: 20px;
+    color: #15ae11;
+    font-weight: bold;
+}
+.new-note-date{
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.new-note-date input{
+    border: none;
+    text-align: center;
+}
+.new-note-date input[type="date"]::-webkit-calendar-picker-indicator{
+    display: none;
+}
+.new-note-date input[type="date"]::-webkit-clear-button{
+    display: none;
 }
 .new-note-content{
-    width: calc(100% - 20px);
+    width: calc(100% - 40px);
     height: calc(100% - 50px);
-    padding: 0 10px;
-}
-.new-note-title{
-    font-size: 14px;
-    line-height: 21px;
-    padding-bottom: 10px;
-    color: #535353;
+    padding: 0 20px;
 }
 .new-note-mood{
     width: 100%;
     padding-top: 10px;
 }
-.new-note-mood textarea{
-    width: calc(100% - 20px);
-    height: 150px;
-    padding: 10px;
+.new-note-input{
+    width: calc(100% - 42px);
+    height: 50px;
+    padding: 15px 20px;
     resize: none;
-    border-color: #d7d7d7;
+    border: 1px solid #d7d7d7;
+    border-radius: 5px;
     outline: none;
+    box-shadow: 0 0 10px 0 #eee inset;
+    font-size: 1rem;
 }
-.new-note-time{
-    width: 100%;
+.new-note-input::-webkit-input-placeholder{
+    color: #999;
 }
-.new-note-time input{
-    width: calc(100% - 20px);
-    height: 40px;
-    padding: 0 10px;
-    border: 1px solid #d7d7d7
-}
-.new-note-img{
-    width: 100%;
-    text-align: center;
+.new-note-regret,.new-note-happy{
     margin-top: 20px;
-}
-.choose-img{
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
-    font-size: 40px;
-    background-color: rgb(243, 243, 243)
-}
-.img-show{
-    display: inline-block;
-    width: 100%;
-}
-.img-show img{
-    width: 100%;
 }
 </style>
