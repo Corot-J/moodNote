@@ -1,17 +1,17 @@
 <template>
   <div class="main">
       <navbar></navbar>
-      <noteList></noteList>
+      <newNote></newNote>
   </div>
 </template>
 
 <script>
 import Navbar from './navbar'
-import NoteList from './noteList'
+import NewNote from './newNote'
 export default {
   name: 'Main',
   components: {
-      Navbar,NoteList
+      Navbar,NewNote
   },
   data () {
     return {

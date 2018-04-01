@@ -28,6 +28,7 @@ export default {
 html,body{
   width: 100%;
   height: 100%;
+  font-family: 微软雅黑;
 }
 *{
   padding: 0;

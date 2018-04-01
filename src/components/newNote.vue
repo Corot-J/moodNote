@@ -1,19 +1,23 @@
 <template>
   <div class="new-note">
-    <div class="new-note-header">
-        <router-link to="/" tag="div" class="cancel-btn"><i class="iconfont icon-back"></i></router-link>
-        <div class="new-note-date"><input type="date" v-model="note.date"></div>
-        <div class="confirm-btn" @click='addNote'><i class="iconfont icon-check"></i></div>
+    <div class="input-item">
+        <div class="input-key">今天的天气怎么样？</div>
+        <div class="input-value">
+            <div class="radio-item" v-for="(weather, index) in weathers" v-bind:key="weather.code">
+                <input :id="'weather_'+index" type="radio" name="weather" @change="weatherChoose(index)">
+                <label :for="'weather_'+index">
+                    <div class="radio-btn">
+                        <div class="radio-btn-point"></div>
+                    </div>
+                    <span>{{weather.name}}</span>
+                </label>
+            </div>
+        </div>
     </div>
-    <div class="new-note-content">
-        <div class="new-note-mood">
-            <textarea class="new-note-input" placeholder="今天的心情..." v-model="note.mood"></textarea> 
-        </div>
-        <div class="new-note-regret">
-            <textarea class="new-note-input" type="text" placeholder="今天的遗憾..." v-model="note.regret"></textarea>
-        </div>
-        <div class="new-note-happy">
-            <textarea class="new-note-input" type="text" placeholder="值得高兴的事情..."></textarea>
+    <div class="input-item">
+        <div class="input-key">你的心情怎么样？</div>
+        <div class="input-value">
+            <input type="text" placeholder="今天过的还开心吗?">
         </div>
     </div>
   </div>
@@ -26,11 +30,17 @@ export default {
   data () {
     return {
         note:{
+            weather: '',
             mood: '',
             regret: '',
             happy: '',
             date: ''
-        }
+        },
+        weathers:[
+            {name: '晴天', code: 1},
+            {name: '阴天', code: 2},
+            {name: '下雨天', code: 3}
+        ]
     }
   },
   mounted:function(){
@@ -48,6 +58,9 @@ export default {
         day = day>9?day:'0'+day;
         this.note.date = year+'-'+month+'-'+day;
       },
+      weatherChoose:function(index){
+        this.note.weather = this.weathers[index].name;
+      },
       chooseImg:function(e){
         var url = window.URL.createObjectURL(e.target.files[0]);
         this.note.img = url;
@@ -63,76 +76,76 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .new-note{
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    font-size: 0;
-}
-.new-note-header{
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    position: relative;
-}
-.cancel-btn,.confirm-btn{
-    position: absolute;
-    top: 0;
-    font-weight: bold;
-}
-.cancel-btn i{
-    font-size: 14px;
-    cursor: pointer;
-}
-.cancel-btn{
-    left: 20px;
-}
-.confirm-btn{
-    right: 15px;
-}
-.confirm-btn i{
-    font-size: 20px;
-    color: #15ae11;
-    font-weight: bold;
-}
-.new-note-date{
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-}
-.new-note-date input{
-    border: none;
-    text-align: center;
-}
-.new-note-date input[type="date"]::-webkit-calendar-picker-indicator{
-    display: none;
-}
-.new-note-date input[type="date"]::-webkit-clear-button{
-    display: none;
-}
-.new-note-content{
     width: calc(100% - 40px);
     height: calc(100% - 50px);
     padding: 0 20px;
+    background-color: #fff;
+    font-size: 0;
+    overflow: hidden;
 }
-.new-note-mood{
+.input-item{
     width: 100%;
-    padding-top: 10px;
+    padding: 20px 0;
 }
-.new-note-input{
-    width: calc(100% - 42px);
-    height: 50px;
-    padding: 15px 20px;
-    resize: none;
-    border: 1px solid #d7d7d7;
-    border-radius: 5px;
-    outline: none;
-    box-shadow: 0 0 10px 0 #eee inset;
+.input-key{
     font-size: 1rem;
-}
-.new-note-input::-webkit-input-placeholder{
+    line-height: 1rem;
     color: #999;
+    transition: transform 0.3s ease;
+    -webkit-transition: transform 0.3s ease;
+    border-left: 3px solid rgb(214, 165, 142);
+    padding-left: 10px;
 }
-.new-note-regret,.new-note-happy{
-    margin-top: 20px;
+.input-value{
+    width: 100%;
+    margin-top: 10px;
+}
+.radio-item{
+    display: inline;
+    vertical-align: top;
+}
+.radio-item input{
+    vertical-align: middle;
+    display: none;
+}
+.radio-item label{
+    vertical-align: middle;
+    margin: 0 10px;
+    display: inline-block;
+}
+.radio-item label span{
+    font-size: 0.8rem;
+    color: #535353;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+.radio-item label .radio-btn{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border: 1px solid #535353;
+    border-radius: 50%;
+    text-align: center;
+}
+.radio-item input:checked + label .radio-btn-point{
+    display: inline-block;
+    vertical-align: middle;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(175, 117, 91);
+    border-radius: 50%;
+}
+.input-item input[type=text]{
+    width: calc(100% - 40px);
+    height: 30px;
+    padding: 0 20px;
+    border: none;
+    border-bottom: 1px solid #999;
+    outline: none;
+}
+.input-item input[type=text]::-webkit-input-placeholder{
+    color: #9f9f9f
 }
 </style>
