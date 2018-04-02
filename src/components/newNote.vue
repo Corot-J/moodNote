@@ -122,7 +122,7 @@ export default {
     border-right-color: #fff;
 }
 .hide-key{
-    transform: translateX(200%);
+    transform: translateX(210%);
 }
 .input-value{
     width: 100%;
