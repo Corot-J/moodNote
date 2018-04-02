@@ -88,13 +88,38 @@ export default {
     padding: 20px 0;
 }
 .input-key{
+    max-width: calc(100% - 32px);
     font-size: 1rem;
-    line-height: 1rem;
     color: #999;
     transition: transform 0.3s ease;
     -webkit-transition: transform 0.3s ease;
-    border-left: 3px solid rgb(214, 165, 142);
-    padding-left: 10px;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 5px 5px 20px 1px #eee;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 10px;
+}
+.input-key::before,.input-key::after{
+    position: absolute;
+    content: '';
+    width: 0px;
+    height: 0px;
+    border: solid transparent;
+}
+.input-key::before{
+    border-width: 9px;
+    left: -18px;
+    top: calc(50% - 12px);
+    border-right-color: #e5e5e5;
+}
+.input-key::after{
+    border-width: 7px;
+    left: -14px;
+    top: calc(50% - 10px);
+    border-right-color: #fff;
 }
 .input-value{
     width: 100%;
