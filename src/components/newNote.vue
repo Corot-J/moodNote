@@ -121,6 +121,9 @@ export default {
     top: calc(50% - 10px);
     border-right-color: #fff;
 }
+.hide-key{
+    transform: translateX(200%);
+}
 .input-value{
     width: 100%;
     margin-top: 10px;
